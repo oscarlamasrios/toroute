@@ -1,0 +1,43 @@
+.formclass > * {
+	display:block;
+	margin:5px;
+}
+
+.formclass {
+	border-style:solid;
+	border-color:#aef6c7;
+	border-radius:5px;
+	padding:10px;
+	width:100%;
+	margin:0 auto;
+	width:50%;
+	background-color:#7daf9c;
+}
+
+.center{
+	padding:1%;
+	margin:1%;
+}
+
+body{
+	background-color:#23967f;
+}
+
+.backgrounded{
+	background-color:#7daf9c;
+	
+}
+
+.big-checkbox {transform:scale(1.5);}
+
+a {
+    position: relative
+}
+
+.bigger:after{
+	content:"";
+	padding: 50px;  
+    position: absolute;
+    left: -25px;
+    top: -25px;
+}

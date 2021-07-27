@@ -1,0 +1,22 @@
+{% extends 'tourouteapp/base.html' %}
+
+{% block content %}
+{% if not request.user.is_authenticated %}
+<div class="center">
+  <form class ="site-form formclass " action="{% url 'login_view' %}" method="post">
+    <h2 >Introduzca sus credenciales:</h2>
+    <h3 style="color:red">{{loginError}}</h3>
+  	{% csrf_token %}
+  	{{form}}
+    {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {% endif %}
+  	<input type="submit" value="Go!">
+	<a class="nav-link" href="{% url 'signup_view' %}?next={{ request.path }}">¿No tienes cuenta? CRÉATE UNA!</a>
+  </form>
+</div>
+{% else %}
+	<h2 style="padding-top:1em">Youre already logged.</h2>
+	<a class="nav-link" href="{% url 'index' %}?next={{ request.path }}">Volver a la Página Principal</a>
+{% endif %}
+{% endblock %}

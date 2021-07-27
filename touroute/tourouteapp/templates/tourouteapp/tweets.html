@@ -1,0 +1,18 @@
+{% extends "tourouteapp/base.html" %} 
+{%block content%} 
+{% if request.user.is_authenticated %}
+	{% csrf_token %}
+	<div style="padding:20px;background-color:white">
+		<h1 style="color:#23967f">Qué opina Twitter sobre ...</h1>
+		{% for name,tweet,link in tweetlist %}
+			<div class="backgrounded rounded border" style="background-color:#f7bfb4;margin-bottom:10px;padding:5px"> 
+				<h2>{{name}}</h2>
+				{% if link != "" %}
+					<div style="margin-left:10px"><a href={{link}}><h4>{{tweet}}</h4></a></div>
+				{% else%}
+					<div style="margin-left:10px"><h4>{{tweet}}</h4></div>
+				{% endif %}
+			</div>
+		{% endfor %}	
+	</div>
+{%endif%} {% endblock %}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es-es">
+  {% load static %}
+  
+  <head>
+  	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    
+    <!--Custom styles for this template -->
+
+    <link href="{% static "tourouteapp/css/1-col-portfolio.css"%}" rel="stylesheet">
+    <link href="{% static "tourouteapp/css/mycss.css"%}" rel="stylesheet">
+    <title>Touroute</title>
+  </head>
+
+  <body>
+  	 <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS, then my JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <h1 style="color:white">Touroute: the route is you</h1>
+        {% if user.is_authenticated %}
+        <div style="background-color:#23967f;border-radius:2px;padding:5px">
+          <a href="{% url 'index' %}" class="bigger" style="text-decoration:none;color:white;">Nueva búsqueda</a>
+        </div>  
+        {% endif %}
+        <div style="background-color:#23967f;border-radius:2px;padding:5px">
+          <a class="bigger" href="{% url 'logout_view' %}?next={{ request.path }}" style="text-decoration:none;color:white">
+            {% if user.is_authenticated %}
+            Desconectarse de {{request.user.username}}
+            {% else %}
+            Volver al login
+            {% endif %}
+          </a>
+        </div>  
+        
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading -->
+    
+        <h1 class="my-4">
+        <small></small>
+      </h1>
+    
+      {% block content %}{% endblock %}
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="w-1 bg-dark fixed-bottom">
+      <div class="container">
+        <p class="m-0 text-center text-white">A FIC students project</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- 
+      <script src="{% static "tourouteapp/vendor/jquery/custom.js" %}"></script>
+    -->
+    <script src="{% static "tourouteapp/vendor/jquery/jquery.min.js" %}"></script>
+    <script src="{% static "tourouteapp/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
+  </body>
+
+</html>

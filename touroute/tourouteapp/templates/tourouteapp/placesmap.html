@@ -1,0 +1,7 @@
+{% extends "tourouteapp/base.html" %} {%block content%} {% if request.user.is_authenticated %}
+
+<BR> {%else%}
+<div class="container">
+  <h2>You should not be here</h2>
+</div>
+<BR> {%endif%} {% endblock %}

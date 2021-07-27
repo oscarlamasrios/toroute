@@ -1,0 +1,14 @@
+{% extends 'tourouteapp/base.html' %}
+{% block javascript %}
+{% endblock %}
+{% block content %}
+
+<div class="center">
+  <form class ="site-form formclass" action="{% url 'signup_view' %}" method="post">
+	<h2>Vamos a crear tu cuenta:</h2>
+  	{% csrf_token %}
+  	{{form}}
+  	<input class="form-control" style="width:15%" type="submit" value="Go!">
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "tourouteapp/base.html" %} 
+{%block content%} 
+{% if request.user.is_authenticated %}
+
+	{%ifequal state "to-search" %}
+	<div class="center">
+	  	<form class="formclass" action="{% url 'index' %}" method="post" id="post-form">
+	  		<h2 >Por favor, complete los campos de búsqueda:</h2>
+	  		{% csrf_token %}
+	  		<h4 style="color:red">{{error}}</h4>
+	  		{{form}}
+	  		<input  type="submit" value="Gogogo!"/>
+		</form>
+	</div>
+	{%endifequal%}
+	{% ifequal state "to-display" %}
+	<div class="row">
+	  	<div class="col-md-8 col-sm-12" id = 'map-div'>
+	  		<img id='map-img' width=100% src="{{mapurl}}" style="border-radius:5px">
+	  		<!--<h1 id='map-img' width=600  style="border-radius:5px"> {{mapurl}}</h1>-->
+	  	</div>
+	  	<div class="col-md-4 mh-100 backgrounded rounded border" style="max-height:75%">
+	  		<h1><b>{{placetype}}:</b></h1>
+	  		<form action="{% url 'index' %}" method="post">
+	  			<div class = "list-group pre-scrollable" style="max-height:50vh;margin-bottom:10px">
+		  			{% csrf_token %}
+
+					<input type="checkbox" name="origin_data_lat" value="{{lat_origen}}" checked hidden/>
+					<input type="checkbox" name="origin_data_lon" value="{{lon_origen}}" checked hidden/>
+					{% for i,j,lat,lon in elements %}
+
+					<div class="list-group-item place">
+						<div style="display:flex"><h2 style="margin-right:80%">{{i}}</h2><input type="checkbox" name="place" value="{{i}}/{{j}}/{{lat}}/{{lon}}" checked class="big-checkbox"/></div>
+						<h3>{{j}}</h3>
+					</div>
+
+					{% endfor %}
+				</div>
+				<input type="submit" value="Muestrame la mejor ruta, por favor!"/><br/>
+			</form>
+	  	</div>
+	</div>
+	{%endifequal%}
+	{% ifequal state "to-route" %}
+	<div class="row">
+	  	<div class="col-md-8 col-sm-12" id = 'map-div'>
+	  		<img id='map-img' width=100% src="{{mapurl}}" style="border-radius:5px">
+	  		<!--<h1 id='map-img' width=600  style="border-radius:5px"> {{mapurl}}</h1>-->
+	  	</div>
+	  	<div class="col-md-4 mh-100 backgrounded rounded border" style="max-height:75%;padding-top:10px">
+	  	  	<div style="display:inline-block;margin-bottom:10px">
+		  		<h4>Esta es su ruta, a partir del</h4>
+		  		<h4 style="color:red"> punto de partida</h4>
+	  		</div>
+			<form action="{% url 'tweets' %}" method="post">
+		  		<div class = "list-group pre-scrollable" style="max-height:50vh;margin-bottom:10px">
+
+			  		{% csrf_token %}
+					{% for i,j,lat,lon,d in elements|slice:"1:" %}
+						<div class ="list-group-item place" style="display:flex">
+							<li >
+								<h2>{{i}} - {{j}}</h2>
+								<input type="checkbox" name="place" value="{{j}}" checked hidden/>
+							</li>
+						</div>
+					{% endfor %}
+					
+				</div>
+				<input type="submit" value="Muestrame tweets sobre esta ruta"/>
+				<h3 style="color:red">{{error}}</h3>
+			</form>
+	  	</div>
+	</div>
+	{%endifequal%}
+
+<BR> {%else%}
+<div>
+  <h2>¡No deberías estar aquí!</h2>
+</div>
+<BR> {%endif%} {% endblock %}
