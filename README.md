@@ -1,9 +1,6 @@
-## PRÁCTICA PROGRAMACIÓN INTEGRATIVA
+**RESUMEN:**
 
-**Autores:**
-
-   - Óscar Lamas Ríos (oslamasri@gmail.com)
-   - Lois Soto López (loissotolopez@gmail.com) 
+Aplicación web para la planificación de visitas turísticas a lugares considerados de interés. Los usuarios podrán introducir una dirección y un rango de búsqueda, de modo que se les mostrará la ubicación de los lugares de interés, así como el orden en que deben de visitarlos para recorrerlos en el menor tiempo posible. El usuario podrá elegir cuales de esos lugares le interesan, obtener una ruta a seguir en un mapa y compartir la lista de lugares por Twitter.
 
 **IMPORTANTE:**
 	
@@ -18,7 +15,6 @@
    docker pull loissotolopez/touroute 
    docker run -p 8000:8000 -i -t loissotolopez/touroute /bin/bash
    python3 manage.py runserver 0.0.0.0:8000 
-
 
 **Vista principal de nuestra aplicación:**
 	
@@ -55,3 +51,8 @@
 	  exacta a seguir, esta información se envía a "Maps Static API" para realizar la construcción del mapa.
 	  Es necesario utilizar esta API pues, con "Maps Static API", sólo se calculan rutas en línea recta, sin tener en cuenta las distintas
 	  calles ... etc.
+	 	  
+**Autores:**
+
+   - Óscar Lamas Ríos (oslamasri@gmail.com)
+   - Lois Soto López (loissotolopez@gmail.com) 
